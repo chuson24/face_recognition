@@ -1,0 +1,121 @@
+<title>Nhan dien nguoi qua CCTV</title>
+<link rel="stylesheet" href="/static/style.css">
+
+<div class="page">
+  <header>
+    <h1>Nhan dien nguoi qua CCTV</h1>
+    <span id="conn-badge" class="badge">...</span>
+  </header>
+
+  <div class="layout">
+    <section class="panel video-panel">
+      <img id="video" src="/video_feed" alt="Live view">
+      <div class="rtsp-row">
+        <input id="rtsp-input" type="text" placeholder="rtsp://... hoac 0 de dung webcam">
+        <button id="rtsp-save">Luu &amp; ket noi lai</button>
+      </div>
+    </section>
+
+    <section class="panel side">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="enroll">Dang ky</button>
+        <button class="tab-btn" data-tab="people">Danh sach</button>
+        <button class="tab-btn" data-tab="settings">Cai dat</button>
+      </div>
+
+      <div id="tab-enroll" class="tab-content active">
+        <label>Ten nguoi</label>
+        <input id="enroll-name" type="text" placeholder="Vi du: Nguyen Van A">
+        <label>So anh quet</label>
+        <input id="enroll-target" type="number" value="20" min="10" max="50">
+        <label class="check-row">
+          <input id="enroll-auto" type="checkbox" checked>
+          Tu dong chup khi du dieu kien
+        </label>
+        <div class="btn-row">
+          <button id="enroll-start">Bat dau quet khuon mat</button>
+          <button id="enroll-cancel" class="secondary">Huy</button>
+        </div>
+        <button id="enroll-capture" class="capture-btn" disabled>Chup ngay</button>
+        <div id="enroll-capture-msg" class="capture-msg"></div>
+        <div id="enroll-progress-wrap" class="hidden">
+          <div class="progress"><div id="enroll-progress-bar"></div></div>
+          <div id="enroll-progress-text"></div>
+          <div id="enroll-hint" class="pose-hint hidden"></div>
+          <div id="enroll-poses" class="poses"></div>
+          <div id="enroll-live" class="live-status"></div>
+          <div id="enroll-counts" class="counts"></div>
+          <img id="enroll-thumb" class="thumb hidden">
+          <div class="log-head">Nhat ky</div>
+          <div id="enroll-log" class="log"></div>
+        </div>
+        <p class="hint">Lam theo dong huong dan mau xanh: nhin thang, quay mat sang trai, sang phai, ngang len, cui xuong
+          (trai/phai tinh theo nguoi dung truoc camera). Giu dau thang, khong nghieng sang vai.
+          Khung <span class="ok-text">xanh</span>/<span class="bad-text">do</span> tren video la khuon mat dang duoc xet.
+          "Chup ngay" bo qua nguong kich thuoc/do net (chi can thay mat).</p>
+      </div>
+
+      <div id="tab-people" class="tab-content">
+        <table id="people-table">
+          <thead><tr><th>Ten</th><th>So anh</th><th>Ngay tao</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div id="tab-settings" class="tab-content">
+        <div class="setting-row">
+          <label>Nguong tin cay nguoi (YOLO)</label>
+          <input type="range" id="s-person_conf_threshold" min="0.1" max="0.95" step="0.05">
+          <span class="val"></span>
+        </div>
+        <div class="setting-row">
+          <label>Nguong tin cay mat (SCRFD)</label>
+          <input type="range" id="s-face_conf_threshold" min="0.1" max="0.95" step="0.05">
+          <span class="val"></span>
+        </div>
+        <div class="setting-row">
+          <label>Kich thuoc mat toi thieu (px)</label>
+          <input type="range" id="s-min_face_size" min="20" max="300" step="5">
+          <span class="val"></span>
+        </div>
+        <div class="setting-row">
+          <label>Nguong similarity nhan dien</label>
+          <input type="range" id="s-similarity_threshold" min="0.1" max="0.9" step="0.02">
+          <span class="val"></span>
+        </div>
+        <div class="setting-row">
+          <label>Xu ly moi N frame</label>
+          <input type="range" id="s-process_every_n_frames" min="1" max="10" step="1">
+          <span class="val"></span>
+        </div>
+        <div class="setting-row">
+          <label>Kiem tra lai sau (frame)</label>
+          <input type="range" id="s-recheck_interval_frames" min="5" max="600" step="5">
+          <span class="val"></span>
+        </div>
+        <div class="setting-row">
+          <label>Nguon du lieu nhan dien</label>
+          <select id="s-gallery_mode">
+            <option value="all">Tat ca (local + import)</option>
+            <option value="imported">Chi du lieu import (CS500)</option>
+            <option value="local">Chi nguoi dang ky tai may</option>
+          </select>
+          <span class="val"></span>
+        </div>
+        <div class="setting-row">
+          <label>Dang ky: kich thuoc mat toi thieu (px)</label>
+          <input type="range" id="s-enroll_min_face_size" min="40" max="300" step="5">
+          <span class="val"></span>
+        </div>
+        <div class="setting-row">
+          <label>Dang ky: do net toi thieu</label>
+          <input type="range" id="s-enroll_min_sharpness" min="0" max="500" step="10">
+          <span class="val"></span>
+        </div>
+        <button id="settings-save">Luu cai dat</button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script src="/static/app.js"></script>

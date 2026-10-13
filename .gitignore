@@ -1,0 +1,14 @@
+# Moi truong ao Python
+venv/
+__pycache__/
+*.pyc
+
+# Link camera (co mat khau)
+rtsp.txt
+
+# Du lieu khuon mat / embedding (du lieu sinh trac hoc ca nhan)
+data/
+
+# Model ONNX (file lon, arcface_r50 > 100MB vuot gioi han GitHub)
+deployed/
+*.onnx

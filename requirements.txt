@@ -1,0 +1,8 @@
+opencv-python
+onnxruntime
+numpy
+fastapi
+uvicorn[standard]
+python-multipart
+supervision
+trackers
