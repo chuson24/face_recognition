@@ -9,6 +9,4 @@ rtsp.txt
 # Du lieu khuon mat / embedding (du lieu sinh trac hoc ca nhan)
 data/
 
-# Model ONNX (file lon, arcface_r50 > 100MB vuot gioi han GitHub)
-deployed/
-*.onnx
+# Model ONNX trong deployed/ duoc luu bang Git LFS (xem .gitattributes)
